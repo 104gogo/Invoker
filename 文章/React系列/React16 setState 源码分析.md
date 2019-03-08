@@ -100,11 +100,15 @@ function appendUpdateToQueue(queue, update) {
   ...
 }
 ```
+链表是从 firstUpdate 属性开始的，payload 是传入 setState 的参数（对象或函数）。
 
 #### 如何从状态链表（updateQueue）中获取新的状态
-在运行 getDerivedStateFromProps 之前，会计算出新的 state。
+在运行 getDerivedStateFromProps 之前，会计算出新的 state，再传给它。
 
-运行 getStateFromUpdate 方法，循环遍历 updateQueue，每次循环会将前一个状态和新的状态通过`Object.assign({}, prevState, partialState)`的方式进行合并。
+通过遍历 updateQueue，每次会将前一个状态和新的状态通过`Object.assign({}, prevState, partialState)`的方式进行合并。
+prevState：前一个状态值
+partialState： 当前状态值
+
 ```javascript
 function getStateFromUpdate<State>(
   workInProgress: Fiber,
@@ -120,22 +124,9 @@ function getStateFromUpdate<State>(
     case UpdateState: {
       const payload = update.payload;
       let partialState;
+      // 如果 payload 是方法的话，会运行这个方法获取状态
       if (typeof payload === 'function') {
-        // Updater function
-        if (__DEV__) {
-          enterDisallowedContextReadInDEV();
-          if (
-            debugRenderPhaseSideEffects ||
-            (debugRenderPhaseSideEffectsForStrictMode &&
-              workInProgress.mode & StrictMode)
-          ) {
-            payload.call(instance, prevState, nextProps);
-          }
-        }
         partialState = payload.call(instance, prevState, nextProps);
-        if (__DEV__) {
-          exitDisallowedContextReadInDEV();
-        }
       } else {
         // Partial state object
         partialState = payload;
@@ -163,6 +154,7 @@ export function processUpdateQueue<State>(
   // Iterate through the list of updates to compute the result.
   let update = queue.firstUpdate;
   let resultState = newBaseState;
+  // 遍历 updateQueue
   while (update !== null) {
     ...
       // a new result.
@@ -187,6 +179,7 @@ export function processUpdateQueue<State>(
   workInProgress.memoizedState = resultState;
 }
 ```
+processUpdateQueue 方法主要是遍历链表，getStateFromUpdate 方法来合并状态。
 
 #### isBatchingUpdates 的作用
 isBatchingUpdates 如果为 true，执行多个 setState，每个 setState 传入的状态都会被暂存到 updateQueue 中，形成上面的链式结构，直到批处理完成（即：isBatchingUpdates = false），才会从 updateQueue 中取出状态，进行上面的合并操作。
