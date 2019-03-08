@@ -193,46 +193,6 @@ export function executeDispatchesInOrder(event) {
 在使用 Select 组件的时候，它的 onChange 方法是事件代理吗？
 不是。
 
-### 最佳实践
-
-##### 与原生事件混合使用
-```javascript
-import ReactDOM from 'react-dom';
-
-class ExampleApplication extends React.Component {
-  componentDidMount() {
-    document.addEventListener('click', () => {
-      alert('document click');
-    });
-  }
-
-  handleOutterClick(e) {
-    console.log(e.currentTarget);
-    alert('p');
-  }
-
-  handleButtonClick(e) {
-    console.log(e.currentTarget);
-    alert('button');
-    // e.stopPropagation();
-  }
-
-  render() {
-    return (
-      <p onClick={this.handleOutterClick}>
-        <button onClick={this.handleButtonClick}> 测试click事件 </button>
-      </p>
-    );
-  }
-}
-
-ReactDOM.render(
-  <ExampleApplication name="Taylor" />,
-  document.getElementById('root')
-);
-
-```
-
 ### 参考文档
 
 [React 事件代理与 stopImmediatePropagation](https://github.com/youngwind/blog/issues/107)

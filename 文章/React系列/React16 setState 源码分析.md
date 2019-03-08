@@ -322,7 +322,7 @@ ReactDOM.render((
   <Count />
 ), document.getElementById('root'));
 ```
-![Alt text](./1551839982431.png)
+![setState](https://github.com/mqyqingfeng/Blog/raw/master/Images/throttle/throttle1.gif)
 
 
 
