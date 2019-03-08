@@ -1,4 +1,4 @@
-# React16 setState 源码分析
+# React16 setState 源码简析
 
 @(react)
 
