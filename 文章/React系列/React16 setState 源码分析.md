@@ -2,7 +2,7 @@
 
 @(react)
 
-先抛出问题，下面代码的输出结果为什么是这样？
+下面代码的输出结果是什么？
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,14 +13,14 @@ class Count extends React.Component {
   handleClick = () => {
     this.setState({ count: this.state.count + 1 });
     this.setState({ count: this.state.count + 1 });
-    console.log(this.state.count); // 1
+    console.log(this.state.count); // ?
 
     setTimeout(() => {
       this.setState({ count: this.state.count + 1 });
-      console.log(this.state.count); // 3
+      console.log(this.state.count); // ?
       this.setState({ count: this.state.count + 1 });
-      console.log(this.state.count); // 4
-    }, 0);
+      console.log(this.state.count); // ?
+    }, 2000);
   };
 
   render() {
@@ -28,7 +28,7 @@ class Count extends React.Component {
 
     return (
       <>
-        <div>{count}</div> // count 最后显示 4
+        <div>{count}</div> {/* 显示 ? */}
         <button onClick={this.handleClick}>点我</button>
       </>
     );
@@ -39,11 +39,22 @@ ReactDOM.render((
   <Count />
 ), document.getElementById('root'));
 ```
-现象：
+答案：
+```
+1 
+<div>2</div>
+// 两秒之后
+3
+// 时间长一点会看到 <div>3</div>
+4
+<div>4</div>
+```
+
+感觉：
 1. setState 在事件回调中表现为异步，在 setTimeout 中表现为同步。
 2. 注释 setTimeout 后执行，页面上显示为2。看起来像是只执行了一个 setState 方法。
 
-结论：
+原因：
 1. 在事件回调函数或者生命周期函数中，它们会调 batchedUpdates 方法，将 isBatchingUpdates 设置为 true，让当前要执行的函数处于批处理状态中。然后 setState 执行到 requestWork 方法，就会被 isBatchingUpdates 给中断。而 setTimout 并没有调 batchedUpdates 方法，所以它的每个 setState 都顺利执行了，并且每次都更新了 this.state.count。
 
 2. 当多个 setState 在批处理状态中执行时，会被依次放入 updateQueue 链表中，然后在 beginWork 调用生命周期方法 getDerivedStateFromProps 之前，生成最新的 state。
