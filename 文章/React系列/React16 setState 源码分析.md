@@ -196,7 +196,7 @@ function requestWork(root: FiberRoot, expirationTime: ExpirationTime) {
     return;
   }
 
-  if (isBatchingUpdates) { // 重点
+  if (isBatchingUpdates) { // 这里
     ...
     return;
   }
@@ -251,7 +251,7 @@ export function dispatchEvent(
   try {
     // Event queue being processed in the same cycle allows
     // `preventDefault`.
-    batchedUpdates(handleTopLevel, bookKeeping); // 这里会进入到 handleTopLevel 方法
+    batchedUpdates(handleTopLevel, bookKeeping); // 这里
   } finally {
     releaseTopLevelCallbackBookKeeping(bookKeeping);
   }
@@ -261,7 +261,7 @@ export function dispatchEvent(
 ```javascript
 function batchedUpdates<A, R>(fn: (a: A) => R, a: A): R {
   const previousIsBatchingUpdates = isBatchingUpdates;
-  isBatchingUpdates = true;
+  isBatchingUpdates = true; // 这里
   try {
     return fn(a);
   } finally {
@@ -285,25 +285,25 @@ class Count extends React.Component {
   componentWillMount() {
     this.setState({ count: this.state.count + 2 });
     this.setState({ count: this.state.count + 1 });
-    console.log('componentWillMount: ', this.state.count);
+    console.log('componentWillMount: ', this.state.count); // ?
   }
 
   componentDidMount() {
     this.setState({ count: this.state.count + 2 });
     this.setState({ count: this.state.count + 1 });
-    console.log('componentDidMount: ', this.state.count);
+    console.log('componentDidMount: ', this.state.count); // ?
   }
 
   handleClick = () => {
     this.setState({ count: this.state.count + 2 });
     this.setState({ count: this.state.count + 1 });
-    console.log('handleClick: ', this.state.count);
+    console.log('handleClick: ', this.state.count); // ?
 
     setTimeout(() => {
       this.setState({ count: this.state.count + 2 });
-      console.log('setTimeout1: ', this.state.count);
+      console.log('setTimeout1: ', this.state.count); // ?
       this.setState({ count: this.state.count + 1 });
-      console.log('setTimeout2: ', this.state.count);
+      console.log('setTimeout2: ', this.state.count); // ?
     }, 0);
   };
 
@@ -312,7 +312,7 @@ class Count extends React.Component {
 
     return (
       <>
-        <div>{count}</div>
+        <div>{count}</div> {/* 显示 ? */}
         <button onClick={this.handleClick}>点我</button>
       </>
     );
