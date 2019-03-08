@@ -80,27 +80,24 @@ function appendUpdateToQueue(queue, update) {
 执行前两个 setState 之后，updateQueue 的数据结构如下：
 ```javascript
 {
-	baseState: {count: 1}， // 当前状态
-	firstUpdate: {
-		payload: { count: 2 }, // 第一个 setState 传入的状态
-		expirationTime: 1073741823,
-		next: {
-			payload: { count: 2 }, // 第二个 setState 传入的状态
-			expirationTime: 1073741823,
-			next: {
-				payload: { count: 2 },
-				next: null,
-			},
-		},
-	},
-	lastUpdate: {
-		expirationTime: 1073741823,
-		payload: { "count": 2 },
-		callback: null,
-		next: null,
-		nextEffect: null
-	},
-	...
+  baseState: { count: 1 }， // 当前状态
+  firstUpdate: {
+    payload: { count: 2 }, // 第一个 setState 传入的状态
+	  next: {
+	    payload: { count: 2 }, // 第二个 setState 传入的状态
+		  next: null,
+		  ...
+	  },
+	  ...
+  },
+  lastUpdate: {
+    payload: { count: 2 },
+    callback: null,
+    next: null,
+    nextEffect: null,
+    ...
+  },
+  ...
 }
 ```
 
