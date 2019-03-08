@@ -221,7 +221,7 @@ function requestWork(root: FiberRoot, expirationTime: ExpirationTime) {
 ```
 
 #### 在哪里将 isBatchingUpdates 设置为 true
-通过《React 事件源码分析》我们知道，事件回调的统一入口是 dispatchEvent，这里会将 isBatchingUpdates 设置为 true。
+通过[《React16 事件源码分析加长版》](https://github.com/104gogo/Invoker/blob/master/%E6%96%87%E7%AB%A0/React%E7%B3%BB%E5%88%97/React16%20%E4%BA%8B%E4%BB%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%8A%A0%E9%95%BF%E7%89%88.md)我们知道，事件回调的统一入口是 dispatchEvent，这里会将 isBatchingUpdates 设置为 true。
 ```javascript
 // react-dom/src/events/ReactDOMEventListener.js
 export function trapBubbledEvent(
@@ -333,7 +333,7 @@ ReactDOM.render((
   <Count />
 ), document.getElementById('root'));
 ```
-![setState](https://github.com/mqyqingfeng/Blog/raw/master/Images/throttle/throttle1.gif)
+![setState](https://github.com/104gogo/Invoker/raw/master/images/react/setState.png)
 
 
 
