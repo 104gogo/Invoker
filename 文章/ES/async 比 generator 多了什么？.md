@@ -265,10 +265,9 @@ run(function* () {
   try {
     yield getData();
   } catch (e) {
-    console.log('内部捕获:', e.message);
+    console.log('内部捕获:', e.message);  // 内部捕获: error
   }
   yield getData();
-  console.log('end');
-}).catch((e) => console.log('外部捕获:', e.message));
-
+  console.log('end'); // 不输出
+}).catch((e) => console.log('外部捕获:', e.message));  // 外部捕获: error
 ```
