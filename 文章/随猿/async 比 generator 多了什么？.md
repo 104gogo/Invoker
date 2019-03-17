@@ -1,7 +1,8 @@
 # async 比 generator 多了什么？
 
-### 父子？
-async 和 generator 在使用的方式几乎一样（可能是因为在 dva 里面用多了，产生了这样的错觉）。其实它们的可比性不大，但是为了避免产生上面的错觉，所以记录一下它们原生有什么不同。下面是它们最主要的区别：
+async 和 generator 在使用的方式几乎一样（可能是因为在 dva 里面用多了，产生了这样的错觉）。其实它们的可比性不大，但是为了避免产生上面的错觉，记录一下它们有什么不同。再通过实现一个 run 函数，让 generator 可以像 async 一样使用。
+
+下面是它们最主要的区别：
 
 - 写法不同，await 和 yield，async 和 *
 - async 可以自执行，generator 需要调用自身迭代器接口 next 方法，不然会一直等待着
@@ -33,7 +34,7 @@ gen.next();
 意思是，next 方法的参数会被注入到 generator 函数中，作为 yield 的返回值。在上面的代码中，我们没有给 next 方法传入任何值，自然被转成了 undefined，所以 a 也就是 undefined。如果我们给第一个 next 方法传个'3'进去，可以看到输出就是'3'了。
 
 ##### yield 右边的数据去哪儿了？
-我们可能在 yield 右边写了很多处理逻辑，然后需要它的结果继续进行处理，却消失在了茫茫代码中。。
+我们可能在 yield 右边写了很多处理逻辑，然后需要它的结果在 yield 的左边继续进行处理，现在却仿佛消失在了茫茫代码中。。
 
 不要慌，我们知道迭代器的数据都是通过`next() { return { value: '...', done: false } }`的 value 值获取的，所以将上面的代码改一下，就可以看到数据了。
 ```javascript
@@ -271,3 +272,10 @@ run(function* () {
   console.log('end'); // 不输出
 }).catch((e) => console.log('外部捕获:', e.message));  // 外部捕获: error
 ```
+
+
+### 总结
+看完后上面的内容之后，大家可能对 generator 实现一个类 async 的自执行函数有了一个比较清晰的思路。最后我们总结下，实现上面的函数我们做了些什么，也就是`async 比 generator 多了什么？`
+- 让 `gen.next() 循环调用`。如果前一个 `value` 是 promise 对象，那么要等到它执行完成再执行 `next` 方法
+- 自执行函数的`返回值是 promise` 对象
+- 注意 generator 函数内部和自执行函数的`异常处理`
