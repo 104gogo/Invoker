@@ -11,7 +11,7 @@
 1. [模块的执行顺序](https://github.com/104gogo/sven/blob/master/packages/order/README.md)
 2. [import()动态加载](https://github.com/104gogo/sven/blob/master/packages/import/README.md)
 3. [export 变量被修改的情况](https://github.com/104gogo/sven/blob/master/packages/export/README.md)
-
+4. [初识 esm](https://github.com/104gogo/sven/blob/master/packages/esm/README.md)
 
 ## 秀操作
 
