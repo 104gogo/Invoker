@@ -8,12 +8,12 @@
 2. [React16 事件源码浅析](https://github.com/104gogo/Invoker/blob/master/%E6%96%87%E7%AB%A0/React16%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/React16%20%E4%BA%8B%E4%BB%B6%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90.md)
 
 ## webpack & rollup
-1. [模块的执行顺序](https://github.com/104gogo/sven/blob/master/packages/order/README.md)
-2. [import()动态加载](https://github.com/104gogo/sven/blob/master/packages/import/README.md)
-3. [export 变量被修改的情况](https://github.com/104gogo/sven/blob/master/packages/export/README.md)
-4. [初识 esm](https://github.com/104gogo/sven/blob/master/packages/esm1/README.md)
-5. [生成 esm 模块](https://github.com/104gogo/sven/blob/master/packages/esm2/README.md)
-6. [实现一个基于 rollup 的打包工具](https://github.com/104gogo/sven/blob/master/packages/esm3/README.md)
+1. [模块的执行顺序](https://github.com/104gogo/sven/blob/master/packages/order) @(webpack)
+2. [import()动态加载](https://github.com/104gogo/sven/blob/master/packages/import) @(webpack)
+3. [export 变量被修改的情况](https://github.com/104gogo/sven/blob/master/packages/export) @(webpack)
+4. [初识 esm](https://github.com/104gogo/sven/blob/master/packages/esm1) @(webpack)
+5. [生成 esm 模块](https://github.com/104gogo/sven/blob/master/packages/esm2) @(rollup)
+6. [实现一个基于 rollup 的打包工具](https://github.com/104gogo/sven/blob/master/packages/esm3) @(rollup)
 
 ## 秀操作
 
@@ -29,8 +29,8 @@
 
 ##### 常见问题
 1. [实现 add(1,2)(3)(4,5)](https://github.com/104gogo/edmond/blob/master/src/problems/add(1,2)(3)(4,5).js)
-2. [实现 promise 循环](https://github.com/104gogo/edmond/blob/master/src/problems/promise循环.js)
-3. [实现 pipe(3).double.pow.get](https://github.com/104gogo/edmond/blob/master/src/problems/pipe(3).double.pow.get.js)
+2. [实现 pipe(3).double.pow.get](https://github.com/104gogo/edmond/blob/master/src/problems/pipe(3).double.pow.get.js)
+3. [实现 promise 循环](https://github.com/104gogo/edmond/blob/master/src/problems/promise循环.js)
 4. [['1','2','3'].map(parseInt)](https://github.com/104gogo/edmond/blob/master/src/problems/['1','2','3'].map(parseInt).js)
 5. [哪些循环可以中断？](https://github.com/104gogo/edmond/blob/master/src/problems/循环中断.js)
 6. [如何将数组扁平化和去重？](https://github.com/104gogo/edmond/blob/master/src/problems/数组去重.js)
