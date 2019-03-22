@@ -36,3 +36,7 @@
 6. [如何将数组扁平化和去重？](https://github.com/104gogo/edmond/blob/master/src/problems/数组去重.js)
 
 ##### 算法
+1. 快排
+2. 二分查找
+- 乱序二分（https://juejin.im/entry/5c8e2040e51d457a121ced45）
+3. 背包
