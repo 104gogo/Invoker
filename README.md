@@ -13,5 +13,7 @@
 2. [import()动态加载](https://github.com/104gogo/sven/blob/master/packages/import) @(webpack)
 3. [export 变量被修改的情况](https://github.com/104gogo/sven/blob/master/packages/export) @(webpack)
 4. [初识 esm](https://github.com/104gogo/sven/blob/master/packages/esm1) @(webpack)
-5. [生成 esm 模块](https://github.com/104gogo/sven/blob/master/packages/esm2) @(rollup)
-6. [实现一个基于 rollup 的打包工具](https://github.com/104gogo/sven/blob/master/packages/esm3) @(rollup
+5. [使用 rollup 生成 esm 模块](https://github.com/104gogo/sven/blob/master/packages/esm2) @(rollup)
+6. [使用 babel 生成 esm 模块](https://github.com/104gogo/sven/blob/master/packages/esm3) @(babel)
+7. [实现一个基于 rollup 的打包工具](https://github.com/104gogo/sven/blob/master/packages/sven-lib) @(rollup)
+8. 对 esm 进行 tree-shaking @(webpack)
