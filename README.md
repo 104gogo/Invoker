@@ -8,7 +8,7 @@
 1. [React16 setState 源码浅析](https://github.com/104gogo/Invoker/blob/master/%E6%96%87%E7%AB%A0/React%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/React16%20setState%20%E6%BA%90%E7%A0%81%E7%AE%80%E6%9E%90.md)
 2. [React16 事件源码浅析](https://github.com/104gogo/Invoker/blob/master/%E6%96%87%E7%AB%A0/React16%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/React16%20%E4%BA%8B%E4%BB%B6%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90.md)
 
-## webpack & rollup
+## webpack & rollup & babel
 1. [模块的执行顺序](https://github.com/104gogo/sven/blob/master/packages/order) @(webpack)
 2. [import()动态加载](https://github.com/104gogo/sven/blob/master/packages/import) @(webpack)
 3. [export 变量被修改的情况](https://github.com/104gogo/sven/blob/master/packages/export) @(webpack)

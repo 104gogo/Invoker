@@ -31,20 +31,35 @@ new Promise(resolve => {
 目前我们最常使用的是 [es6-promise](https://github.com/stefanpenner/es6-promise)，经常会作为 polyfill 被引入，但它的源码相对复杂，不太适合入门，所以选择 [lie](https://github.com/calvinmetcalf/lie) 库来学习下 Promises/A+ spec (Version 1.1) 的实现，提供可以测试的 [demo](https://github.com/104gogo/Invoker/tree/master/packages/promise) 项目，需要 clone 之后安装运行。等我们看完全文，理解了 Promise 的基本运行原理之后，再回去看 es6-promise 就会比较轻松了～
 
 #### promise 对象的属性
-下面列出 promise 很重要的3个属性
-```javascript
-this.state = PENDING; // 状态
-this.queue = []; // callback 队列
-this.outcome = void 0; // 记录当前的值，即 callback 的参数
-```
-生成 promise 的情况有：
-- new Promise()
+在我们平常使用中，生成 promise 的情况可能有下面这几种：
 - Promise.resolve()
 - Promise.reject()
 - then()
 
+其实它们内部还是调用的 Promise 构造函数来生成的 promise 对象，Promise 构造函数如下：
+```javascript
+function Promise(resolver) {
+  if (typeof resolver !== 'function') {
+    throw new TypeError('resolver must be a function');
+  }
+  // 下面是 promise 对象很重要的3个属性
+  this.state = PENDING; // 状态
+  this.queue = []; // callback 队列
+  this.outcome = void 0; // 记录当前的值，即 callback 的参数
+
+  /* istanbul ignore else */
+  if (!process.browser) {
+    this.handled = UNHANDLED;
+  }
+  if (resolver !== INTERNAL) {
+    safelyResolveThenable(this, resolver);
+  }
+}
+```
+需要记住代码中注释的 promise 属性 state、queue 和 outcome。
+
 #### then 方法做了些什么事情？
-下面是 then 方法的源码，注释中的 promiseA 表示调用 then 方法的 this 值，promiseB 表示新创建的 promise。
+下面是 then 方法的源码，注释中的 promiseA 表示调用 then 方法的 this，promiseB 表示新创建的 promise。
 ```javascript
 Promise.prototype.then = function (onFulfilled, onRejected) {
   // 判断 callback 是不是函数，如果不是函数，但是状态已经改变了，就返回 promiseA
@@ -117,7 +132,7 @@ const promise4 = {
 unwrap 的参数如下：
 - promise 是前面介绍 then 方法的时候，在里面新创建的那个 promiseB
 - func 是 callback
-- value 是前面介绍 then 方法中那个 promiseA 的 value
+- value 是前面介绍 then 方法中那个 promiseA 的 outcome
 ```javascript
 function unwrap(promise, func, value) {
   immediate(function () {
@@ -125,17 +140,17 @@ function unwrap(promise, func, value) {
     try {
       returnValue = func(value); // 执行 callback
     } catch (e) {
-      return handlers.reject(promise, e);
+      return handlers.reject(promise, e); // 异常处理先不管
     }
     
     ...
-    handlers.resolve(promise, returnValue);
+    handlers.resolve(promise, returnValue); // 最后到这
   });
 }
 ```
 执行 callback 之后，就可以拿到返回值。
 
-在 handlers.resolve 中，我们可以通过 promiseB 对象，在它的 queue 里面，找到下一个 promiseC 和对应的 callback 继续执行。
+然后在 handlers.resolve 中，我们可以通过 promiseB 对象，在它的 queue 里面，找到下一个 promiseC 和对应的 callback 继续执行。
 ```javascript
 handlers.resolve = function (self, value) {
   // 当 value 是 promise 的时候，获取它的 then 方法，否则 thenable 为 undefined
