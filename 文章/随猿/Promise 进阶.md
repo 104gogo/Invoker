@@ -347,5 +347,5 @@ ok，大家可以调试看看，不过执行顺序可能会比较绕，需要有
 - callback 的返回值是 promise 的话，会中断后续 then 方法的执行，直到返回的 promise 状态改变才会接着执行
 
 ## 参考
-[从一道Promise执行顺序的题目看Promise实现](https://zhuanlan.zhihu.com/p/34421918)
+[从一道Promise执行顺序的题目看Promise实现](https://zhuanlan.zhihu.com/p/34421918)  
 这篇文章中讲解了微任务的实现原理，感兴趣的同学可以阅读一下。
