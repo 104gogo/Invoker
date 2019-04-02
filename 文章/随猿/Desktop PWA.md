@@ -2,7 +2,7 @@
 
 ## 缘起
 最近谷歌浏览器更新的73版本，支持了所有平台的 Desktop 功能，如下：
-> [Progressive Web Apps work everywhere](https://developers.google.com/web/updates/2019/03/nic73#pwas-everywhere)
+> [Progressive Web Apps work everywhere](https://developers.google.com/web/updates/2019/03/nic73#pwas-everywhere)  
 > Starting in Chrome 73, **Desktop Progressive Web Apps are now supported on all desktop platforms**, including Chrome OS, Linux, Mac, and Windows.
 
 为了给大家提供像桌面应用的体验，我们决定在后台系统中试一试。
@@ -112,8 +112,7 @@ if ('serviceWorker' in navigator) {
 
 [Install Progressive Web App (PWA) natively on Windows/macOS via Chrome Browser](https://medium.com/@dhormale/install-pwa-on-windows-desktop-via-google-chrome-browser-6907c01eebe4)  
 
-[Desktop Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/desktop)
-桌面应用的设计
+[Desktop Progressive Web Apps](https://developers.google.com/web/progressive-web-apps/desktop)   
 ![4](https://github.com/104gogo/Invoker/raw/master/images/desktop/4.png)
 
 
