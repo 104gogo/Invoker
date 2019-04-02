@@ -11,13 +11,13 @@
 Desktop PWA 就是让我们的网站，变成一个类桌面应用方便使用，它没有地址栏，没有其他 tab，能使用 serviceWorker 等功能。Desktop PWA 主要是借助 Web App Manifest 实现的，然后它和 mobile PWA 的配置使用方式一样，这样可以使用同一套代码在两端实现 desktop 功能。
 
 我们可以在 [twitter mobile](https://mobile.twitter.com/) 网站进行体验，效果如下：
-![1](https://github.com/104gogo/Invoker/raw/master/images/desktop/1.png)
+![1](https://github.com/104gogo/Invoker/raw/master/images/desktop/11.png)
 
 另外，添加到桌面的网站，会作为应用添加到 `chrome://apps/`里面，并且代表它安装了。
-![2](https://github.com/104gogo/Invoker/raw/master/images/desktop/2.png)
+![2](https://github.com/104gogo/Invoker/raw/master/images/desktop/22.png)
 
 我们可以在桌面打开此应用，也可以点击右上角的3个点选择卸载应用。
-![3](https://github.com/104gogo/Invoker/raw/master/images/desktop/3.png)
+![3](https://github.com/104gogo/Invoker/raw/master/images/desktop/33.png)
 
 ### 要满足些什么要求？
 想要将网站变成桌面应用，必须满足如下要求：
