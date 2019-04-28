@@ -1,6 +1,6 @@
 # React16 setState 源码浅析
 
-@(react)
+@(react16.8)
 
 下面代码的输出结果是什么？
 ```javascript
