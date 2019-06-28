@@ -25,7 +25,7 @@ new Promise(resolve => {
 2
 3
 ```
-可以看到前面三步是同步执行，只有 `callback 是异步执行`的。
+可以看到 Promise 的四个执行步骤中，前面三步是同步执行的，只有 `callback 是异步执行`的。
 
 ## 分解 Promise 的执行步骤
 目前我们最常使用的是 [es6-promise](https://github.com/stefanpenner/es6-promise)，经常会作为 polyfill 被引入，但它的源码相对复杂，不太适合入门，所以选择 [lie](https://github.com/calvinmetcalf/lie) 库来学习下 Promises/A+ spec (Version 1.1) 的实现，提供可以测试的 [demo](https://github.com/104gogo/Invoker/tree/master/packages/promise) 项目，需要 clone 之后安装运行。等我们看完全文，理解了 Promise 的基本运行原理之后，再回去看 es6-promise 就会比较轻松了～
